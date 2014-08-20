@@ -1,0 +1,25 @@
+{
+  "name": "a127-magic",
+  "version": "0.0.1",
+  "description": "Apigee 127 Swagger Loader and Middleware",
+  "keywords": [
+    "Apigee",
+    "127",
+    "Swagger",
+    "Volos"
+  ],
+  "author": "Scott Ganyo <sganyo@apigee.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "dependencies": {
+    "swagger-tools": "",
+    "volos-swagger": "",
+    "underscore": "",
+    "js-yaml": ""
+  },
+  "devDependencies": {
+    "should": ""
+  },
+  "scripts": {},
+  "bin": {}
+}
