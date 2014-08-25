@@ -15,7 +15,8 @@
     "swagger-tools": "",
     "volos-swagger": "",
     "underscore": "",
-    "js-yaml": ""
+    "js-yaml": "",
+    "debug": ""
   },
   "devDependencies": {
     "should": ""
