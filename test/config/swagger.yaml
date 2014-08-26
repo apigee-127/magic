@@ -12,8 +12,17 @@ consumes:
 produces:
   - "application/json"
 x-a127-config:
-  field: &value
+  testString1: &testString1 value
+  testArray1: &testArray1
+    - one
+    - two
+  testHash1: &testHash1
+    one: one
+    two: two
 x-volos-resources:
+  testReference1: *testString1
+  testReference2: *testArray1
+  testReference3: *testHash1
   cache:
     provider: "volos-cache-memory"
     options:
