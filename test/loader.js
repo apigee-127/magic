@@ -24,7 +24,7 @@ describe('swagger.yaml replacement', function(done) {
     done();
   });
 
-  it.only('empty config must not change the structure', function(done) {
+  it('empty config must not change the structure', function(done) {
 
     var config = a127config.load();
     var originalSwagger = yaml.load(SWAGGER_FILE);
