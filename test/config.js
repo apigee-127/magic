@@ -15,6 +15,14 @@ describe('loads default config', function(done) {
     done();
   });
 
+  it('must include secrets', function(done) {
+    config['a127.account.organization'].should.equal('ORGANIZATION');
+    config['a127.account.username'].should.equal('USERNAME');
+    config['a127.account.password'].should.equal('PASSWORD');
+    config['a127.account.environment'].should.equal('ENVIRONMENT');
+    done();
+  });
+
   it('must include base defaults', function(done) {
 
     should.exist(config['swaggerFile']);

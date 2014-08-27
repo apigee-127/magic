@@ -19,6 +19,7 @@ x-a127-config:
   testHash1: &testHash
     one: one
     two: two
+  a127.account.password: &password "password"
 x-volos-resources:
   testReference1: *testString
   testReference2: *testArray
