@@ -20,28 +20,26 @@ x-a127-config:
     one: one
     two: two
   a127.account.password: &password "password"
-x-volos-resources:
+x-volos-test:
   testReference1: *testString
   testReference2: *testArray
   testReference3: *testHash
+x-volos-resources:
   cache:
     provider: "volos-cache-memory"
     options:
-      - "name"
-      -
-        ttl: 10000
+      name: "name"
+      ttl: 10000
   quota:
     provider: "volos-quota-memory"
     options:
-      -
-        timeUnit: "minute"
-        interval: 1
-        allow: 2
+      timeUnit: "minute"
+      interval: 1
+      allow: 2
   oauth2:
-    provider: "volos-oauth-apigee"
+    provider: "volos-oauth-redis"
     options:
-      -
-        NOTE: "This section is replaced by app.js."
+      encryptionKey: 'something'
     validGrantTypes:
       - "client_credentials"
       - "authorization_code"

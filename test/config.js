@@ -11,7 +11,7 @@ describe('loads default config', function(done) {
   var config;
 
   before(function(done) {
-    config = a127config.load();
+    config = a127config.reload();
     done();
   });
 
@@ -25,9 +25,8 @@ describe('loads default config', function(done) {
 
   it('must include base defaults', function(done) {
 
-    should.exist(config['swaggerFile']);
-    should.exist(config['controllers']);
-    should.exist(config['loader']);
+    should.exist(config['a127.magic'].swaggerFile);
+    should.exist(config['a127.magic'].controllers);
     done();
   });
 
@@ -57,9 +56,8 @@ describe('loads config hierarchy', function() {
 
   it('must include base defaults', function(done) {
 
-    should.exist(config['swaggerFile']);
-    should.exist(config['controllers']);
-    should.exist(config['loader']);
+    should.exist(config['a127.magic'].swaggerFile);
+    should.exist(config['a127.magic'].controllers);
     done();
   });
 

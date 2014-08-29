@@ -28,7 +28,7 @@ describe('swagger.yaml replacement', function(done) {
 
     var config = a127config.load();
     var originalSwagger = yaml.load(SWAGGER_FILE);
-    var convertedSwagger = config.loader.load(SWAGGER_FILE, {});
+    var convertedSwagger = loader.load(SWAGGER_FILE, {});
 
     originalSwagger.should.eql(convertedSwagger);
 
@@ -38,7 +38,7 @@ describe('swagger.yaml replacement', function(done) {
   it('must load and replace config', function(done) {
 
     var config = a127config.reload();
-    var swaggerObject = config.loader.load(SWAGGER_FILE, config);
+    var swaggerObject = loader.load(SWAGGER_FILE, config);
 
     var swaggerConfig = swaggerObject['x-a127-config'];
 
@@ -48,7 +48,7 @@ describe('swagger.yaml replacement', function(done) {
 
     swaggerConfig["a127.account.password"].should.equal('PASSWORD');
 
-    var swaggerReference = swaggerObject['x-volos-resources'];
+    var swaggerReference = swaggerObject['x-volos-test'];
     swaggerReference.testReference1.should.equal('defaultString');
     swaggerReference.testReference2.should.eql([ 'default1', 'default2' ]);
     swaggerReference.testReference3.should.eql({ test1: 'defaultHash1', test2: 'defaultHash2'});
