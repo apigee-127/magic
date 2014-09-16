@@ -13,7 +13,10 @@ var config = a127config.load();
 config['a127.magic'].swaggerFile = SWAGGER_FILE;
 config['a127.magic'].controllers = {};
 
-it('middleware must load correctly', function(done) {
-  middleware();
-  done();
+describe('middleware', function() {
+
+  it('must load correctly', function(done) {
+    middleware();
+    done();
+  });
 });
