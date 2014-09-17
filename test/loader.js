@@ -46,7 +46,7 @@ describe('swagger.yaml replacement', function(done) {
     swaggerConfig.testArray1.should.eql([ 'default1', 'default2' ]);
     swaggerConfig.testHash1.should.eql({ test1: 'defaultHash1', test2: 'defaultHash2'});
 
-    swaggerConfig["a127.account.password"].should.equal('PASSWORD');
+    swaggerConfig['a127.account.password'].should.equal('PASSWORD');
 
     var swaggerReference = swaggerObject['x-volos-test'];
     swaggerReference.testReference1.should.equal('defaultString');

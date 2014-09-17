@@ -14,8 +14,11 @@ var config = a127config.load();
 
 config['a127.magic'].swaggerFile = SWAGGER_FILE;
 
-it('resources must be made available', function(done) {
-  var oauth = resource('oauth2');
-  should.exist(oauth);
-  done();
+describe('resource', function() {
+
+  it('oauth must be made available', function(done) {
+    var oauth = resource('oauth2');
+    should.exist(oauth);
+    done();
+  });
 });
