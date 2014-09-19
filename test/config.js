@@ -4,7 +4,7 @@ var path = require('path');
 var fs = require('fs');
 var os = require('os');
 
-process.env.A127_CONFIG = path.resolve(__dirname, 'config');
+process.env.A127_APPROOT = __dirname;
 
 describe('loads default config', function(done) {
 

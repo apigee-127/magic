@@ -5,10 +5,8 @@ var path = require('path');
 var fs = require('fs');
 var yaml = require('yamljs');
 
-var CONFIG_DIR = path.resolve(__dirname, 'config');
-process.env.A127_CONFIG = CONFIG_DIR;
-
-var SWAGGER_FILE = path.resolve(CONFIG_DIR, 'swagger.yaml');
+process.env.A127_APPROOT = __dirname;
+var SWAGGER_FILE = path.resolve(__dirname, 'api', 'swagger', 'swagger.yaml');
 
 describe('swagger.yaml replacement', function(done) {
 
