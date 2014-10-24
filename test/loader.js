@@ -6,51 +6,70 @@ var fs = require('fs');
 var yaml = require('yamljs');
 
 process.env.A127_APPROOT = __dirname;
-var SWAGGER_FILE = path.resolve(__dirname, 'api', 'swagger', 'swagger.yaml');
 
-describe('swagger.yaml replacement', function(done) {
+describe('loader', function() {
 
-  it('must load yaml', function(done) {
+  describe('proper swagger', function() {
 
-    var swaggerObject = yaml.load(SWAGGER_FILE);
-    var swaggerConfig = swaggerObject['x-a127-config'];
+    var SWAGGER_FILE = path.resolve(__dirname, 'api', 'swagger', 'swagger.yaml');
 
-    swaggerConfig.testString1.should.equal('value');
-    swaggerConfig.testArray1.should.eql([ 'one', 'two' ]);
-    swaggerConfig.testHash1.should.eql({ one: 'one', two: 'two'});
+    it('must load yaml', function(done) {
 
-    done();
+      var swaggerObject = yaml.load(SWAGGER_FILE);
+      var swaggerConfig = swaggerObject['x-a127-config'];
+
+      swaggerConfig.testString1.should.equal('value');
+      swaggerConfig.testArray1.should.eql([ 'one', 'two' ]);
+      swaggerConfig.testHash1.should.eql({ one: 'one', two: 'two'});
+
+      done();
+    });
+
+    it('empty config must not change the structure', function(done) {
+
+      var config = a127config.load();
+      var originalSwagger = yaml.load(SWAGGER_FILE);
+      var convertedSwagger = loader.load(SWAGGER_FILE, {});
+
+      originalSwagger.should.eql(convertedSwagger);
+
+      done();
+    });
+
+    it('must load and replace config', function(done) {
+
+      var config = a127config.reload();
+      var swaggerObject = loader.load(SWAGGER_FILE, config);
+
+      var swaggerConfig = swaggerObject['x-a127-config'];
+
+      swaggerConfig.testString1.should.equal('defaultString');
+      swaggerConfig.testArray1.should.eql([ 'default1', 'default2' ]);
+      swaggerConfig.testHash1.should.eql({ test1: 'defaultHash1', test2: 'defaultHash2'});
+
+      swaggerConfig['a127.account.password'].should.equal('PASSWORD');
+
+      var swaggerReference = swaggerObject['x-volos-test'];
+      swaggerReference.testReference1.should.equal('defaultString');
+      swaggerReference.testReference2.should.eql([ 'default1', 'default2' ]);
+      swaggerReference.testReference3.should.eql({ test1: 'defaultHash1', test2: 'defaultHash2'});
+
+      done();
+    });
   });
 
-  it('empty config must not change the structure', function(done) {
+  describe('broken swagger', function() {
 
-    var config = a127config.load();
-    var originalSwagger = yaml.load(SWAGGER_FILE);
-    var convertedSwagger = loader.load(SWAGGER_FILE, {});
+    it('with duplicate volos resources must fail on load', function(done) {
 
-    originalSwagger.should.eql(convertedSwagger);
+      var SWAGGER_FILE = path.resolve(__dirname, 'api', 'swagger', 'swagger_with_dup_resource.yaml');
 
-    done();
-  });
+      (function() {
+        var swaggerObject = loader.load(SWAGGER_FILE, {});
+      }).should.throw("duplicate resource named 'cache' in 'x-volos-resources'");
 
-  it('must load and replace config', function(done) {
+      done();
+    });
 
-    var config = a127config.reload();
-    var swaggerObject = loader.load(SWAGGER_FILE, config);
-
-    var swaggerConfig = swaggerObject['x-a127-config'];
-
-    swaggerConfig.testString1.should.equal('defaultString');
-    swaggerConfig.testArray1.should.eql([ 'default1', 'default2' ]);
-    swaggerConfig.testHash1.should.eql({ test1: 'defaultHash1', test2: 'defaultHash2'});
-
-    swaggerConfig['a127.account.password'].should.equal('PASSWORD');
-
-    var swaggerReference = swaggerObject['x-volos-test'];
-    swaggerReference.testReference1.should.equal('defaultString');
-    swaggerReference.testReference2.should.eql([ 'default1', 'default2' ]);
-    swaggerReference.testReference3.should.eql({ test1: 'defaultHash1', test2: 'defaultHash2'});
-
-    done();
   });
 });
