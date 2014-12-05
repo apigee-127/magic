@@ -60,13 +60,24 @@ describe('loader', function() {
 
   describe('broken swagger', function() {
 
-    it('with duplicate volos resources must fail on load', function(done) {
+    it('with duplicate a127 services must fail on load', function(done) {
 
       var SWAGGER_FILE = path.resolve(__dirname, 'api', 'swagger', 'swagger_with_dup_resource.yaml');
 
       (function() {
         var swaggerObject = loader.load(SWAGGER_FILE, {});
-      }).should.throw("duplicate resource named 'cache' in 'x-volos-resources'");
+      }).should.throw('duplicate resource named: cache in: x-a127-services');
+
+      done();
+    });
+
+    it('with duplicate volos resources must fail on load', function(done) {
+
+      var SWAGGER_FILE = path.resolve(__dirname, 'api', 'swagger', 'swagger_with_dup_resource_old.yaml');
+
+      (function() {
+        var swaggerObject = loader.load(SWAGGER_FILE, {});
+      }).should.throw('duplicate resource named: cache in: x-volos-resources');
 
       done();
     });

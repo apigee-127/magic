@@ -24,17 +24,16 @@ x-volos-test:
   testReference1: *testString
   testReference2: *testArray
   testReference3: *testHash
-x-a127-services:
+x-volos-resources:
   cache:
-    provider: volos-cache-memory
+    provider: "volos-cache-memory"
     options:
-      name: name
+      name: "name"
       ttl: 10000
-  cache:
-    provider: volos-cache-memory
+  cache: ""
   quota:
-    provider: volos-quota-memory
+    provider: "volos-quota-memory"
     options:
-      timeUnit: minute
+      timeUnit: "minute"
       interval: 1
       allow: 2
