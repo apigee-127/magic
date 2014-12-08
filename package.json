@@ -1,6 +1,6 @@
 {
   "name": "a127-magic",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Apigee 127 Swagger Loader and Middleware",
   "keywords": [
     "Apigee",
@@ -16,11 +16,11 @@
     "url": "https://github.com/apigee-127/magic.git"
   },
   "dependencies": {
-    "swagger-tools": "",
-    "volos-swagger": "",
-    "underscore": "",
-    "yamljs": "",
-    "debug": ""
+    "swagger-tools": "^0.6.13",
+    "volos-swagger": "^0.6.0",
+    "underscore": "1.6.x",
+    "yamljs": "0.1.x",
+    "debug": "1.0.x"
   },
   "devDependencies": {
     "should": "",
