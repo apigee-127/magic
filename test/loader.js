@@ -27,34 +27,36 @@ describe('loader', function() {
 
     it('empty config must not change the structure', function(done) {
 
-      var config = a127config.load();
-      var originalSwagger = yaml.load(SWAGGER_FILE);
-      var convertedSwagger = loader.load(SWAGGER_FILE, {});
+      a127config.load(function(config) {
+        var originalSwagger = yaml.load(SWAGGER_FILE);
+        var convertedSwagger = loader.load(SWAGGER_FILE, {});
 
-      originalSwagger.should.eql(convertedSwagger);
+        originalSwagger.should.eql(convertedSwagger);
 
-      done();
+        done();
+      });
     });
 
     it('must load and replace config', function(done) {
 
-      var config = a127config.reload();
-      var swaggerObject = loader.load(SWAGGER_FILE, config);
+      a127config.reload(function(config) {
+        var swaggerObject = loader.load(SWAGGER_FILE, config);
 
-      var swaggerConfig = swaggerObject['x-a127-config'];
+        var swaggerConfig = swaggerObject['x-a127-config'];
 
-      swaggerConfig.testString1.should.equal('defaultString');
-      swaggerConfig.testArray1.should.eql([ 'default1', 'default2' ]);
-      swaggerConfig.testHash1.should.eql({ test1: 'defaultHash1', test2: 'defaultHash2'});
+        swaggerConfig.testString1.should.equal('defaultString');
+        swaggerConfig.testArray1.should.eql([ 'default1', 'default2' ]);
+        swaggerConfig.testHash1.should.eql({ test1: 'defaultHash1', test2: 'defaultHash2'});
 
-      swaggerConfig['a127.account.password'].should.equal('PASSWORD');
+        swaggerConfig['a127.account.password'].should.equal('PASSWORD');
 
-      var swaggerReference = swaggerObject['x-volos-test'];
-      swaggerReference.testReference1.should.equal('defaultString');
-      swaggerReference.testReference2.should.eql([ 'default1', 'default2' ]);
-      swaggerReference.testReference3.should.eql({ test1: 'defaultHash1', test2: 'defaultHash2'});
+        var swaggerReference = swaggerObject['x-volos-test'];
+        swaggerReference.testReference1.should.equal('defaultString');
+        swaggerReference.testReference2.should.eql([ 'default1', 'default2' ]);
+        swaggerReference.testReference3.should.eql({ test1: 'defaultHash1', test2: 'defaultHash2'});
 
-      done();
+        done();
+      });
     });
   });
 

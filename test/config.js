@@ -2,17 +2,17 @@ var should = require('should');
 var a127config = require('../lib/config');
 var path = require('path');
 var fs = require('fs');
-var os = require('os');
 
 process.env.A127_APPROOT = __dirname;
 
 describe('loads default config', function(done) {
 
   var config;
-
   before(function(done) {
-    config = a127config.reload();
-    done();
+    a127config.reload(function(conf) {
+      config = conf;
+      done();
+    });
   });
 
   it('must include secrets', function(done) {
@@ -45,8 +45,10 @@ describe('loads config hierarchy', function() {
   var config;
 
   before(function(done) {
-    config = a127config.load('development');
-    done();
+    a127config.load('development', function(conf) {
+      config = conf;
+      done();
+    });
   });
 
   it('must have env', function(done) {
@@ -95,25 +97,28 @@ describe('load variations', function() {
 
   it('should load using NODE_ENV if present', function(done) {
     process.env.NODE_ENV = 'development';
-    config = a127config.reload();
-    a127config.env().should.equal('development');
-    done();
+    a127config.reload(function() {
+      a127config.env().should.equal('development');
+      done();
+    });
   });
 
   it('should give A127_ENV precedence over NODE_ENV', function(done) {
     process.env.NODE_ENV = 'test';
     process.env.A127_ENV = 'development';
-    config = a127config.reload();
-    a127config.env().should.equal('development');
-    done();
+    a127config.reload(function() {
+      a127config.env().should.equal('development');
+      done();
+    });
   });
 
   it('should load using file if present and no env var directives', function(done) {
     delete(process.env.NODE_ENV);
-    delete(process.env.A127_ENV);;
-    config = a127config.reload();
-    a127config.env().should.equal('development');
-    done();
+    delete(process.env.A127_ENV);
+    a127config.reload(function() {
+      a127config.env().should.equal('development');
+      done();
+    });
   });
 
 });
