@@ -16,7 +16,7 @@
     "url": "https://github.com/apigee-127/magic.git"
   },
   "dependencies": {
-    "swagger-tools": "^0.7.0",
+    "swagger-tools": "^0.7.1",
     "volos-swagger": "^0.7.0",
     "underscore": "1.6.x",
     "yamljs": "0.1.x",
