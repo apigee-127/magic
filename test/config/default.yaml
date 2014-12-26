@@ -12,3 +12,4 @@ testArray2:
 testHash2:
   test1: "defaultHash1"
   test2: "defaultHash2"
+validateResponse: true
