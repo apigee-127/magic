@@ -38,6 +38,13 @@ describe('loads default config', function(done) {
     done();
   });
 
+  it('must include flattened services', function(done) {
+
+    config['TestService.key1'].should.equal('someKey1');
+    config['TestService.key2'].should.equal('someKey2');
+    done();
+  });
+
 });
 
 describe('loads config hierarchy', function() {
