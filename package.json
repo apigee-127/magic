@@ -18,7 +18,7 @@
   "dependencies": {
     "debug": "1.0.x",
     "splitargs": "0.0.3",
-    "swagger-tools": "^0.7.1",
+    "swagger-tools": "^0.8.0",
     "underscore": "1.6.x",
     "volos-swagger": "^0.7.0",
     "yamljs": "0.1.x"
