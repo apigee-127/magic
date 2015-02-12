@@ -27,7 +27,9 @@
     "should": "",
     "volos-cache-memory": "",
     "volos-quota-memory": "",
-    "volos-oauth-redis": ""
+    "volos-oauth-redis": "",
+    "supertest": "",
+    "connect": ""
   },
   "scripts": {},
   "bin": {}

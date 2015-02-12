@@ -4,6 +4,7 @@ process.env.A127_APPROOT = __dirname;
 
 var middleware = require('../lib/middleware');
 var should = require('should');
+var request = require('supertest');
 
 describe('middleware', function() {
 
@@ -28,5 +29,52 @@ describe('middleware', function() {
     should.exist(swaggerTools);
 
     done();
+  });
+
+  it('must allow resource access', function(done) {
+
+    var app = require('connect')();
+    app.use(middleware(config));
+
+    app.use(function(req, res, next) {
+      try {
+        var resource = req.a127.resource('oauth2');
+        should.exist(resource);
+        should.exist(resource.beforeCreateToken);
+        resource.beforeCreateToken.should.be.Function;
+      } catch (err) {
+        return done(err);
+      }
+      next();
+    });
+
+    request(app)
+      .get('/')
+      .end(function(err, res) {
+        done(err);
+      });
+  });
+
+  it('must allow config access', function(done) {
+
+    var app = require('connect')();
+    app.use(middleware(config));
+
+    app.use(function(req, res, next) {
+      try {
+        var hash = req.a127.config('testHash1');
+        should.exist(hash);
+        hash.should.containDeep({test2: "defaultHash2"});
+      } catch (err) {
+        return done(err);
+      }
+      next();
+    });
+
+    request(app)
+      .get('/')
+      .end(function(err, res) {
+        done(err);
+      });
   });
 });
