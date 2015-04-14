@@ -16,6 +16,7 @@
     "url": "https://github.com/apigee-127/magic.git"
   },
   "dependencies": {
+    "cors": "^2.5.3",
     "debug": "1.0.x",
     "splitargs": "0.0.3",
     "swagger-tools": "^0.8.0",
