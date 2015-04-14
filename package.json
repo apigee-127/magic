@@ -32,6 +32,8 @@
     "supertest": "",
     "connect": ""
   },
-  "scripts": {},
+  "scripts": {
+    "test": "mocha -u exports -R spec test"
+  },
   "bin": {}
 }
