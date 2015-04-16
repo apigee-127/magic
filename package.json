@@ -18,9 +18,9 @@
   "dependencies": {
     "cors": "^2.5.3",
     "debug": "1.0.x",
+    "lodash": "^3.7.0",
     "splitargs": "0.0.3",
     "swagger-tools": "^0.8.0",
-    "underscore": "1.6.x",
     "volos-swagger": "^0.7.0",
     "yamljs": "0.1.x"
   },
