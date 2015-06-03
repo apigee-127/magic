@@ -19,11 +19,15 @@ x-a127-config:
   testHash1: &testHash
     one: one
     two: two
+  testBoolean1: &testBoolean true
+  testNumber1: &testNumber 1
   a127.account.password: &password "password"
 x-volos-test:
   testReference1: *testString
   testReference2: *testArray
   testReference3: *testHash
+  testReference4: *testBoolean
+  testReference5: *testNumber
 x-volos-resources:
   cache:
     provider: "volos-cache-memory"

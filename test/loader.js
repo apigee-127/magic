@@ -21,6 +21,8 @@ describe('loader', function() {
       swaggerConfig.testString1.should.equal('value');
       swaggerConfig.testArray1.should.eql([ 'one', 'two' ]);
       swaggerConfig.testHash1.should.eql({ one: 'one', two: 'two'});
+      swaggerConfig.testBoolean1.should.equal(true);
+      swaggerConfig.testNumber1.should.equal(1);
 
       done();
     });
@@ -54,6 +56,8 @@ describe('loader', function() {
         swaggerReference.testReference1.should.equal('defaultString');
         swaggerReference.testReference2.should.eql([ 'default1', 'default2' ]);
         swaggerReference.testReference3.should.eql({ test1: 'defaultHash1', test2: 'defaultHash2'});
+        swaggerReference.testReference4.should.equal(false);
+        swaggerReference.testReference5.should.equal(2);
 
         done();
       });
