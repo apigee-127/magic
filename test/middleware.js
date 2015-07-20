@@ -42,6 +42,7 @@ describe('middleware', function() {
         should.exist(resource);
         should.exist(resource.beforeCreateToken);
         resource.beforeCreateToken.should.be.Function;
+        res.end('ok');
       } catch (err) {
         return done(err);
       }
@@ -65,6 +66,7 @@ describe('middleware', function() {
         var hash = req.a127.config('testHash1');
         should.exist(hash);
         hash.should.containDeep({test2: "defaultHash2"});
+        res.end('ok');
       } catch (err) {
         return done(err);
       }
