@@ -3,7 +3,7 @@ var a127config = require('../lib/config');
 var loader = require('../lib/loader');
 var path = require('path');
 var fs = require('fs');
-var yaml = require('yamljs');
+var yaml = require('js-yaml');
 
 process.env.A127_APPROOT = __dirname;
 
@@ -15,7 +15,7 @@ describe('loader', function() {
 
     it('must load yaml', function(done) {
 
-      var swaggerObject = yaml.load(SWAGGER_FILE);
+      var swaggerObject = yaml.safeLoad(fs.readFileSync(SWAGGER_FILE, 'utf8'));
       var swaggerConfig = swaggerObject['x-a127-config'];
 
       swaggerConfig.testString1.should.equal('value');
@@ -30,7 +30,7 @@ describe('loader', function() {
     it('empty config must not change the structure', function(done) {
 
       a127config.load(function(config) {
-        var originalSwagger = yaml.load(SWAGGER_FILE);
+        var originalSwagger = yaml.safeLoad(fs.readFileSync(SWAGGER_FILE, 'utf8'));
         var convertedSwagger = loader.load(SWAGGER_FILE, {});
 
         originalSwagger.should.eql(convertedSwagger);
