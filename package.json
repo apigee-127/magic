@@ -16,14 +16,14 @@
     "url": "https://github.com/apigee-127/magic.git"
   },
   "dependencies": {
-    "body-parser": "<=1.12.4",
+    "body-parser": "^1.15.0",
     "cors": "^2.5.3",
     "debug": "^2.2.0",
     "js-yaml": "^3.5.3",
-    "lodash": "^3.10.1",
+    "lodash": "^4.5.1",
     "splitargs": "0.0.3",
     "swagger-docs": "0.0.0-alpha2",
-    "swagger-tools": "^0.9.0",
+    "swagger-tools": "^0.10.1",
     "volos-swagger": "^0.8.0"
   },
   "devDependencies": {
